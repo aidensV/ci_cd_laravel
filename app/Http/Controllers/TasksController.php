@@ -15,20 +15,6 @@ class TasksController extends Controller
         if ( request('id') &&  request('action') == 'edit'){
             $editableTask = Task::find(request('id'));
         }
-        foreach ($tasks as $key => $value) {
-          if ($value->created_at >= \Carbon\Carbon::now()) {
-            $date_id = $value->created_at;
-          }else{
-            $boringLanguage = 'id';
-            $translator = \Carbon\Translator::get($boringLanguage);
-            $date_id = \Carbon\Carbon::createFromTimeStamp(strtotime($value->created_at))->locale($boringLanguage)->diffForHumans();
-          }
-          // dd($value->created_at);
-          // dd( \Carbon\Carbon::now());
-
-          dd($date_id);
-
-        }
         return view('tasks.index', compact('tasks','editableTask'));
     }
     public function store()
