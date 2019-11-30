@@ -24,7 +24,7 @@ class TasksController extends Controller
             'description' => 'required|max:255',
         ]);
 
-        Task::create(request()->only('name', 'description'));
+        Task::create(request()->only('nam', 'description'));
         return back();
     }
     public function update(Task $task)
